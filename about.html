@@ -1,265 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pur En Lonyo | About Us</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* ===== GLOBAL STYLES ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Open Sans', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
-
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pur En Lonyo | About Us</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ===== GLOBAL STYLES ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Open Sans', Arial, sans-serif; line-height:1.6; color:#333; }
+.container { width:90%; max-width:1100px; margin:auto; }
 
 /* ===== HEADER ===== */
-header {
-    background: #1b5e20;
-    color: #fff;
-    padding: 15px 0;
-}
+header { background:#1b5e20; color:#fff; padding:15px 0; }
+.logo { width:100px; border-radius:10px; }
+header .container { display:flex; justify-content:space-between; align-items:center; }
+nav ul { list-style:none; display:flex; }
+nav ul li { margin-left:20px; }
+nav ul li a { color:#fff; text-decoration:none; font-weight:600; }
+nav ul li a:hover { text-decoration:underline; }
+.active { color:aquamarine; }
 
-.logo {
-     width: 100px;
-     border-radius: 10px; 
-}
-  
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-}
-.active{
-    color: aquamarine;
-} 
-nav ul li a:hover {
-    text-decoration: underline;
-}
-        /* ===== ABOUT PAGE SECTIONS ===== */
+/* ===== HERO ===== */
 .about-hero {
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    padding: 20px;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                url('images/farm-hero.jpg') center/cover no-repeat;
+    height:50vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+    padding:20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/farm-hero.jpg') center/cover no-repeat;
 }
 
-.about-section {
-    padding: 60px 0;
-    text-align: center;
-}
+/* ===== ABOUT SECTION ===== */
+.about-section { padding:60px 0; text-align:center; }
+.about-section h2 { color:#1b5e20; font-size:2rem; margin-bottom:25px; }
+.about-section p { font-size:1rem; max-width:800px; margin:0 auto 20px auto; line-height:1.7; }
 
-.about-section h2 {
-    color: #1b5e20;
-    font-size: 2rem;
-    margin-bottom: 25px;
-}
+/* ===== CARD GRID ===== */
+.card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; margin-top:30px; }
+.card { padding:30px 20px; border-radius:10px; background:#e8f5e9; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align:center; }
+.card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
+.card h3 { margin:15px 0 10px 0; font-size:1.25rem; color:#1b5e20; }
+.card p { font-size:0.95rem; color:#333; }
+.card-icon { font-size:50px; color:#2e7d32; margin-bottom:15px; }
 
-.about-section p {
-    font-size: 1rem;
-    max-width: 800px;
-    margin: 0 auto 20px auto;
-    line-height: 1.7;
-}
-/* ===== ABOUT PAGE CARD GRID ===== */
-.about-section .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
+/* Objectives full width */
+.objectives { grid-column:1/-1; }
 
-.about-section .card {
-    padding: 30px 20px;
-    border-radius: 10px;
-    background: #e8f5e9;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
+/* OL a,b,c style */
+.card ol { list-style-type: lower-alpha; text-align:left; padding-left:20px; }
 
-.about-section .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
+/* ===== LEADERSHIP PROFESSIONAL ===== */
+.about-section.leadership .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; margin-top:30px; }
+.about-section.leadership .card { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:240px; background:#c8e6c9; text-align:center; }
+.about-section.leadership img { width:120px; height:120px; object-fit:cover; border-radius:50%; margin-bottom:15px; border:4px solid #2e7d32; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+.about-section.leadership .card-icon { font-size:110px; margin-bottom:15px; color:#2e7d32; }
 
-.about-section .card h3 {
-    margin: 15px 0 10px 0;
-    font-size: 1.25rem;
-    color: #1b5e20;
-}
-
-.about-section .card p {
-    font-size: 0.95rem;
-    color: #333;
-}
-
-.about-section .card-icon {
-    font-size: 50px;
-    color: #2e7d32;
-    margin-bottom: 15px;
-}
-/* ===== RESPONSIVE FOR ABOUT PAGE ===== */
- @media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .hero h2 {
-        font-size: 2rem;
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+    .card-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
-.about-section.mission-vision .card {
-    background: #dcedc8; /* lighter green than homepage */
+@media(max-width:768px){
+    header .container{
+        flex-direction:column;
+    }
+    nav ul{
+        flex-direction:column;
+        align-items:center;
+    }
+    nav ul li{
+        margin:10px 0;
+    }
+    .card-grid{
+        grid-template-columns:1fr;
+    }
+    /* Leadership specific */
+    .about-section.leadership .card-grid{
+        grid-template-columns:1fr;
+    }
+    .about-section.leadership img{
+        width:100px;
+        height:100px;
+    }
+    .about-section.leadership .card-icon{
+        font-size:90px;
+    }
 }
 
-.about-section.leadership .card {
-    background: #c8e6c9; /* soft, professional green */
-}
-
-    </style>
+</style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header>
-        <div class="container">
-             <h1 class="logo">
-                <img src="images/logo.jpeg" alt="Farmers Cooperative Logo" class="logo">
-            </h1>
-
-            <nav>
-                <div class="logo">
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="container">
+        <h1 class="logo">
+            <img src="images/logo.jpeg" alt="Farmers Cooperative Logo" class="logo">
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="news.html">News & Updates</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </div>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About Us</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="membership.html">Membership</a></li>
-                     <li><a href="news.html">News & Updates</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+</header>
 
-    <!-- ===== HERO ABOUT ===== -->
-    <section class="hero about-hero">
-        <div class="hero-content">
-            <h2>About Our Cooperative</h2>
-            <p>Learn more about our mission, vision, history, and leadership guiding our farmers’ success.</p>
-        </div>
-    </section>
+<!-- ===== HERO ===== -->
+<section class="hero about-hero">
+    <div class="hero-content">
+        <h2>About Our Cooperative</h2>
+        <p>Learn more about our mission, vision, specific goals, Core Values, Objectives, history, and leadership guiding our farmers’ success.</p>
+    </div>
+</section>
 
-    <!-- ===== HISTORY ===== -->
-    <section class="about-section">
-        <div class="container">
-            <h2>Our History</h2>
-            <p>
-                Pur En Lonyo was established in 2020 to unite farmers in Lira District Itek Sub-County for better access to markets,
-                farming resources, and training. Over the years, we have grown to 96 members,
-                achieving sustainable agricultural growth and improved livelihoods.
-            </p>
-        </div>
-    </section>
+<!-- ===== HISTORY ===== -->
+<section class="about-section">
+    <div class="container">
+        <h2>Our History</h2>
+        <p>
+            Itek Sub-County Pur En Lonyo Oil Seed Growers Cooperative society limited was established in 2020 to unite farmers in Lira District Itek Sub-County for better access to markets,
+            farming resources, and training. Over the years, we have grown to 850 members with 394 Male and 456 Female Comprising of 495 Youth between  18yrs - 35yrs,
+            achieving sustainable agricultural growth and improved livelihoods.
+        </p>
+    </div>
+</section>
 
-    <!-- ===== MISSION & VISION ===== -->
-    <section class="about-section mission-vision">
-        <div class="container">
-            <div class="card-grid">
-                <div class="card">
-                    <i class="fa-solid fa-bullseye card-icon"></i>
-                    <h3>Our Mission</h3>
-                    <p>To empower farmers with resources, knowledge, and market access for sustainable growth.</p>
-                </div>
-
-                <div class="card">
-                    <i class="fa-solid fa-eye card-icon"></i>
-                    <h3>Our Vision</h3>
-                    <p>To be the leading farmers’ cooperative in Lira District recognized for innovation, unity, and quality produce.</p>
-                </div>
+<!-- ===== MISSION, VISION, GOALS, VALUES, OBJECTIVES ===== -->
+<section class="about-section mission-vision">
+    <div class="container">
+        <div class="card-grid">
+            <div class="card">
+                <i class="fa-solid fa-bullseye card-icon"></i>
+                <h3>Our Mission</h3>
+                <p>To promote sustainable agricultural production of Sunflower, Soyabean, Maize value addition, Financial service access, Market access, partnership building and modern technology.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-eye card-icon"></i>
+                <h3>Our Vision</h3>
+                <p>To be the leading cooperative in Lira District providing commercially viable agro-production technologies for youth and their families.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-eye card-icon"></i>
+                <h3>Specific Goals</h3>
+                <p>To improve the communities incomes from modern agriculture and eradicate poverty.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-eye card-icon"></i>
+                <h3>Core Values</h3>
+                <ol>
+                    <li>Self-Help</li>
+                    <li>Self-responsibility</li>
+                    <li>Democracy</li>
+                    <li>Equality</li>
+                    <li>Solidarity</li>
+                    <li>Honesty</li>
+                    <li>Openness</li>
+                    <li>Accountability and Transparency</li>
+                    <li>Social responsibility and care for others</li>
+                </ol>
+            </div>
+            <div class="card objectives">
+                <i class="fa-solid fa-eye card-icon"></i>
+                <h3>Objectives</h3>
+                <ol type="a">
+                    <li>To adopt climate smart approach in commercial crop production practice such as use of improved seeds, fertilizers, pesticides, mechanization, demonstration of new technology, use of tarpaulins, modern simple storage facilites among others.</li>
+                    <li>To improve farming technologies by use of extension, digital collective bulking and marketing, inputs order to ensure quick services/goods delivery to farmers at a reduced cost operations.</li>
+                    <li>To establish an agro-input shop to ease farmers access and affordable agro-inputs.</li>
+                    <li>To create employment among the youth and women from within the region.</li>
+                </ol>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ===== LEADERSHIP ===== -->
-    <section class="about-section leadership">
-        <div class="container">
-            <h2>Our Leadership</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <i class="fa-solid fa-user-tie card-icon"></i>
-                    <h3>Chairperson</h3>
-                    <p>OWERA LINCOLN</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-user-tie card-icon"></i>
-                    <h3>Secretary</h3>
-                    <p>ANGOLI JASPER</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-user-tie card-icon"></i>
-                    <h3>Treasurer</h3>
-                    <p>AKELLO LUZA OKABUA</p>
-                </div>
+<!-- ===== LEADERSHIP ===== -->
+<section class="about-section leadership">
+    <div class="container">
+        <h2>Our Leadership</h2>
+        <h3>Board members</h3>
+        <div class="card-grid">
+            <div class="card">
+                <img src="images/chairperson.jpeg" alt="Chairperson">
+                <h3>Chairperson</h3>
+                <p>Hon Owera Lincoln</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Vice Chairperson</h3>
+                <p>Ms Atoke Judith</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>General Secretary</h3>
+                <p>Mr Obonyo Jimmy</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Treasurer</h3>
+                <p>Ms Atala Eunice</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Production and Marketing</h3>
+                <p>Mr Angoli Jasper</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Publicity Secretary</h3>
+                <p>Mr Otoo Sam</p>
+            </div>
+            <h3>Management</h3>
+            <div class="card">
+                <img src="images/manager.jpeg" alt="manager">
+                <h3>Manager</h3>
+                <p>Mr Oree Bonny</p>
+            </div>
+            <div class="card">
+                 <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Accountant</h3>
+                <p>Mr Apunyo Gustavo</p>
+            </div>
+            <div class="card">
+                 <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>IT Tech</h3>
+                <p>Mr Alyao Ronald</p>
+            </div>
+            <div class="card">
+                 <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Extension worker</h3>
+                <p>Mr Alyao Geoffrey</p>
+            </div>
+            <div class="card">
+                 <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3>Sales agent</h3>
+                <p>Ms Akello Linda</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="container">
-            <p>
-                &copy 2026 Pur En Lonyo. All rights reserved.
-            </p>
-            <p>
-                Website developed by <strong>Ronald Alyao</strong>
-            </p>
-        </div>
-    </footer>
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Itek Sub-County Pur En Lonyo Oil Seed Growers Cooperative society limited. All rights reserved.</p>
+        <p>Website developed by <strong>Ronald Alyao</strong></p>
+    </div>
+</footer>
 
 </body>
 </html>
