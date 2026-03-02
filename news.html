@@ -1,179 +1,350 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News & Updates | Pur En Lonyo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News & Events</title>
 
 <style>
-/* ===== GLOBAL STYLES ===== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
+/* BODY */
 body{
-    font-family:'Open Sans', Arial, sans-serif;
-    line-height:1.6;
-    color:#333;
+  margin:0;
+  font-family:Segoe UI;
+  background:#f3f7fb;
+  overflow-x:hidden;
+}
+/* ===== HEADER ===== */
+header {
+    background: #1b5e20;
+    color: #fff;
+    padding: 15px 0;
 }
 
-.container{
-    width:90%;
-    max-width:1100px;
-    margin:auto;
+.logo {
+     width: 100px;
+     border-radius: 10px; 
 }
 
-/* ===== NAVIGATION HEADER ===== */
-header:not(.page-header){
-    background:#1b5e20;
-    color:#fff;
-    padding:15px 0;
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo{
-    width:100px;
-    border-radius:10px;
+nav ul {
+    list-style: none;
+    display: flex;
 }
 
-header .container{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+nav ul li {
+    margin-left: 20px;
 }
 
-nav ul{
-    list-style:none;
-    display:flex;
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
-nav ul li{
-    margin-left:20px;
+nav ul li a:hover {
+    text-decoration: underline;
 }
-
-nav ul li a{
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-}
-
-nav ul li a:hover{
-    text-decoration:underline;
-}
-
 .active{
-    color:aquamarine;
+    color: aquamarine;
+} 
+/* HERO */
+.hero{
+  background:
+    linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+    url("images/event1.jpeg");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  padding:90px 20px;
+  text-align:center;
+  animation:heroFade 1.3s ease;
+}
+@keyframes heroFade{
+  from{opacity:0; transform:translateY(-40px);}
+  to{opacity:1;}
+}
+.hero h1{font-size:40px;}
+
+/* SECTION */
+.section{
+  width:90%;
+  margin:auto;
+  padding:40px 0;
+}
+h2{text-align:center; color:#0c4a2e;}
+
+/* SLIDER */
+.slider{
+  overflow:hidden;
+  position:relative;
+  height:250px;
+  border-radius:12px;
+}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:1s;
+}
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  animation:zoom 7s infinite alternate;
+}
+@keyframes zoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+.active{opacity:1;}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+  gap:25px;
 }
 
-/* ===== PAGE HEADER ===== */
-.page-header{
-    background:#7da07f;
-    text-align:center;
-    border-radius:10px;
-    margin:15px;
-    padding:25px 15px;
+/* CARD */
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,.1);
+  transition:.5s;
+  opacity:0;
+  transform:translateY(40px);
+}
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 12px 25px rgba(0,0,0,.2);
 }
 
-.page-header h1{
-    margin-bottom:8px;
+/* IMAGE STACK */
+.imgwrap{
+  position:relative;
+  height:220px;
+  overflow:visible;
+}
+.main{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  z-index:1;
+  transition:.4s;
+}
+.overlay{
+  width:130px;
+  height:90px;
+  object-fit:cover;
+  position:absolute;
+  right:15px;
+  bottom:-18px;
+  border-radius:8px;
+  border:4px solid white;
+  z-index:3;
+  box-shadow:0 10px 15px rgba(0,0,0,.3);
+  transition:.4s;
+}
+.card:hover .overlay{
+  transform:translateY(-8px) rotate(3deg);
 }
 
-/* ===== NEWS GRID ===== */
-.news-container{
-    max-width:1100px;
-    margin:60px auto;
-    padding:0 20px;
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
+/* CONTENT */
+.content{
+  padding:20px;
+  margin-top:15px;
+}
+.date{
+  color:#ff6600;
+  font-weight:bold;
 }
 
-/* ===== NEWS CARD UPGRADE ===== */
-.news-card{
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    position:relative;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+/* BUTTON */
+button{
+  background:#0c4a2e;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{
+  background:#083320;
+  transform:scale(1.05);
 }
 
-.news-card:hover{
-    transform: translateY(-8px);
-    box-shadow:0 12px 20px rgba(0,0,0,0.15);
+/* COUNTDOWN */
+#count{
+  background:#ff6600;
+  color:white;
+  padding:8px;
+  border-radius:6px;
+  margin-top:10px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,102,0,.6);}
+  70%{box-shadow:0 0 15px 10px rgba(255,102,0,0);}
+  100%{box-shadow:0 0 0 0;}
 }
 
-/* image zoom effect */
-.news-card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    transition: transform 0.5s ease;
+/* LIGHTBOX */
+.lightbox{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,.85);
+  z-index:2000;
+  animation:fade .4s;
+}
+.lightbox img{
+  width:80%;
+  margin:5% auto;
+  display:block;
+  animation:zoomIn .4s;
+}
+@keyframes zoomIn{
+  from{transform:scale(.6);}
+  to{transform:scale(1);}
 }
 
-.news-card:hover img{
-    transform: scale(1.05);
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,.6);
+  z-index:1500;
+}
+.modal-box{
+  background:white;
+  width:80%;
+  max-width:450px;
+  margin:12% auto;
+  padding:25px;
+  border-radius:10px;
+  text-align:center;
+  animation:slideUp .4s;
+}
+@keyframes slideUp{
+  from{transform:translateY(60px); opacity:0;}
+  to{transform:translateY(0); opacity:1;}
 }
 
-/* content padding */
-.news-content{
-    padding:20px;
+/* LEADERSHIP */
+.announce{
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 5px 12px rgba(0,0,0,.1);
 }
 
-.news-content h3{
-    color:#2e7d32;
-    margin-bottom:8px;
+/* GALLERY */
+.gallery{
+  text-align:center;
+  margin-top:30px;
+}
+.gallery a{
+  background:#ff6600;
+  color:white;
+  padding:13px 25px;
+  border-radius:8px;
+  text-decoration:none;
+  transition:.3s;
+}
+.gallery a:hover{
+  background:#d95500;
 }
 
-/* date badge */
-.news-date{
-    display:inline-block;
-    font-size:0.85rem;
-    color:#fff;
-    background:#2e7d32;
-    padding:3px 10px;
-    border-radius:5px;
-    margin-bottom:12px;
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  font-size:20px;
+  text-decoration:none;
+  z-index:3000;
+  animation:whats 2s infinite;
 }
+@keyframes whats{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+/* FOOTER */
 
-/* ===== FOOTER ===== */
 footer{
-    background:#1b5e20;
-    color:white;
-    text-align:center;
-    padding:20px 10px;
-    font-size:0.9rem;
+
+background:#1b5e20;
+
+color:white;
+
+text-align:center;
+
+padding:25px 0;
+
+margin-top:60px;
+
 }
 
-/* ===== RESPONSIVE ===== */
+footer strong{
+
+color:#c8e6c9;
+
+}
+
+
+/* MOBILE */
+
 @media(max-width:768px){
 
 header .container{
-    flex-direction:column;
-    text-align:center;
-}
 
-.logo{
-    width:80px;
-    margin-bottom:10px;
+flex-direction:column;
+
 }
 
 nav ul{
-    flex-direction:column;
-    align-items:center;
+
+flex-direction:column;
+align-items:center;
+
 }
 
 nav ul li{
-    margin:8px 0;
+
+margin:10px 0;
+
 }
 
-.page-header h1{
-    font-size:1.7rem;
-}
+.hero-content h2{
 
-.page-header p{
-    font-size:0.9rem;
+font-size:2rem;
+
 }
 
 }
@@ -181,85 +352,226 @@ nav ul li{
 </head>
 
 <body>
+    
+<!-- HEADER -->
 
-<!-- NAVIGATION -->
 <header>
+
 <div class="container">
 
-<h1>
-<img src="images/logo.jpeg" alt="Farmers Cooperative Logo" class="logo">
-</h1>
+<img src="images/logo.jpeg"
+class="logo">
 
 <nav>
+
 <ul>
+
 <li><a href="index.html">Home</a></li>
+
 <li><a href="about.html">About Us</a></li>
+
 <li><a href="products.html">Products</a></li>
+
 <li><a href="membership.html">Membership</a></li>
+
 <li><a href="news.html" class="active">News & Updates</a></li>
+
 <li><a href="contact.html">Contact</a></li>
+
 </ul>
+
 </nav>
 
 </div>
+
 </header>
 
-<!-- PAGE HEADER -->
-<header class="page-header">
-<h1>News & Updates</h1>
-<p>Latest announcements, events, and cooperative activities</p>
-</header>
 
-<!-- NEWS SECTION -->
-<section class="news-container">
+<!-- HERO -->
+<div class="hero">
+<h1>News & Events</h1>
+<p>Stay Updated With Cooperative Activities</p>
+</div>
 
-<!-- CARD 1 -->
-<div class="news-card">
-<img src="images/meeting.jpg" alt="Members Meeting">
-<div class="news-content">
-<h3>Annual General Meeting Held Successfully</h3>
-<span class="news-date">20 January 2026</span>
-<p>
-The cooperative held its Annual General Meeting where members reviewed performance,
-approved financial reports, and elected new committee members.
-</p>
+<!-- FEATURED NEWS SLIDER -->
+<div class="section">
+<h2>Featured News</h2>
+<div class="slider">
+<div class="slide active">
+<img src="images/event1.jpeg">
+</div>
+<div class="slide">
+<img src="images/past1.jpeg">
+</div>
+<div class="slide">
+<img src="images/past2.jpeg">
+</div>
+<div class="slide">
+<img src="images/past3.jpeg">
+</div>
+<div class="slide">
+<img src="images/past4.jpeg">
+</div>
+<div class="slide">
+<img src="images/past5.jpeg">
+</div>
+<div class="slide">
+<img src="images/past6.jpeg">
+</div>
+<div class="slide">
+<img src="images/past7.jpeg">
+</div>
+<div class="slide">
+<img src="images/past8.jpeg">
+</div>
+<div class="slide">
+<img src="images/past9.jpeg">
+</div>
+<div class="slide">
+<img src="images/past10.jpeg">
+</div>
+<div class="slide">
+<img src="images/past11.jpeg">
+</div>
+<div class="slide">
+<img src="images/past12.jpeg">
+</div>
+<div class="slide">
+<img src="images/past13.jpeg">
+</div>
+</div>
+</div>
+
+<!-- UPCOMING -->
+<div class="section">
+<h2>Upcoming Events</h2>
+<div class="grid">
+<div class="card">
+<div class="imgwrap">
+<img src="images/event1.jpeg" class="main" onclick="openLight(this.src)">
+<img src="images/event1.jpeg" class="overlay">
+</div>
+<div class="content">
+<h3>Farmers Training Workshop</h3>
+<p class="date">20 March 2026</p>
+<p>Modern farming skills training.</p>
+<div id="count">Loading...</div>
+<button onclick="openModal()">View Details</button>
+</div>
+</div>
 </div>
 </div>
 
-<!-- CARD 2 -->
-<div class="news-card">
-<img src="images/training.jpg" alt="Farmer Training">
-<div class="news-content">
-<h3>Farmer Training on Modern Agricultural Practices</h3>
-<span class="news-date">10 January 2026</span>
-<p>
-Members received training on improved crop management, post-harvest handling,
-and market access strategies.
-</p>
+<!-- LEADERSHIP -->
+<div class="section">
+<h2>Leadership Announcement</h2>
+<div class="announce">
+<h3>Chairperson Message</h3>
+<p>We appreciate all members for supporting the cooperative growth.</p>
 </div>
 </div>
 
-<!-- CARD 3 -->
-<div class="news-card">
-<img src="images/produce.jpg" alt="Produce Collection">
-<div class="news-content">
-<h3>Produce Collection Center Opened</h3>
-<span class="news-date">02 January 2026</span>
-<p>
-The cooperative officially opened a produce collection center to improve quality control
-and market access for members.
-</p>
+<!-- PAST EVENTS -->
+<div class="section">
+<h2>Past Events</h2>
+<div class="grid">
+<div class="card">
+<div class="imgwrap">
+<img src="images/past12.jpeg" class="main" onclick="openLight(this.src)">
+<img src="images/past12.jpeg" class="overlay">
+</div>
+<div class="content">
+<h3>Harvest Celebration</h3>
+<p>Community harvest success.</p>
+<button onclick="openModal()">View Photos</button>
+</div>
+</div>
+</div>
+<div class="gallery">
+<p>View more memories</p>
+<a href="gallery.html">Open Gallery</a>
 </div>
 </div>
 
-</section>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLight()">
+<img id="lightimg">
+</div>
 
-<!-- FOOTER -->
+<!-- MODAL -->
+<div id="modal" class="modal">
+<div class="modal-box">
+<h2>Event Information</h2>
+<p>Contact office or WhatsApp.</p>
+<button onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/256788852311" class="whatsapp">💬</a>
+
 <footer>
-<p>© 2026 Pur En Lonyo. All Rights Reserved.</p>
-<p>Website developed by <strong>Ronald Alyao</strong></p>
+
+<div class="container">
+
+<p>
+
+© 2026 Itek Sub-County Pur En Lonyo Oil Seed Growers Cooperative society limited.
+
+All rights reserved.
+
+</p>
+
+<p>
+
+Website developed by <strong>Ronald Alyao</strong>
+
+</p>
+
+</div>
+
 </footer>
 
+<script>
+/* SLIDER */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},4000);
+
+/* COUNTDOWN */
+let date=new Date("March 20 2026");
+setInterval(()=>{
+let now=new Date();
+let diff=date-now;
+let days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("count").innerHTML=days+" Days Remaining";
+},1000);
+
+/* MODAL */
+let modal=document.getElementById("modal");
+function openModal(){ modal.style.display="block"; }
+function closeModal(){ modal.style.display="none"; }
+
+/* LIGHTBOX */
+let lightbox=document.getElementById("lightbox");
+let lightimg=document.getElementById("lightimg");
+function openLight(src){ lightbox.style.display="block"; lightimg.src=src; }
+function closeLight(){ lightbox.style.display="none"; }
+
+/* SCROLL REVEAL */
+let cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+cards.forEach(card=>{
+let top=card.getBoundingClientRect().top;
+if(top<window.innerHeight-80){
+card.classList.add("show");
+}
+});
+});
+</script>
 </body>
 </html>
- 
