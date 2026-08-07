@@ -15,6 +15,7 @@ body{
   overflow-x:hidden;
 }
 /* ===== HEADER ===== */
+/* ===== HEADER ===== */
 header {
     background: #1b5e20;
     color: #fff;
@@ -65,9 +66,23 @@ nav ul li a:hover {
   text-align:center;
   animation:heroFade 1.3s ease;
 }
-@keyframes heroFade{
-  from{opacity:0; transform:translateY(-40px);}
-  to{opacity:1;}
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
 }
 .hero h1{font-size:40px;}
 
@@ -103,13 +118,22 @@ h2{text-align:center; color:#0c4a2e;}
   from{transform:scale(1);}
   to{transform:scale(1.1);}
 }
-.active{opacity:1;}
+.slide.active{opacity:1;}
 
 /* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
   gap:25px;
+}
+
+/* EMPTY STATE */
+.empty-msg{
+  text-align:center;
+  color:#666;
+  font-style:italic;
+  padding:20px;
+  grid-column:1/-1;
 }
 
 /* CARD */
@@ -171,6 +195,16 @@ h2{text-align:center; color:#0c4a2e;}
   color:#ff6600;
   font-weight:bold;
 }
+.past-badge{
+  display:inline-block;
+  background:#0c4a2e;
+  color:#fff;
+  font-size:12px;
+  font-weight:bold;
+  padding:3px 10px;
+  border-radius:20px;
+  margin-bottom:6px;
+}
 
 /* BUTTON */
 button{
@@ -188,7 +222,7 @@ button:hover{
 }
 
 /* COUNTDOWN */
-#count{
+.count{
   background:#ff6600;
   color:white;
   padding:8px;
@@ -335,12 +369,6 @@ align-items:center;
 
 }
 
-nav ul li{
-
-margin:10px 0;
-
-}
-
 .hero-content h2{
 
 font-size:2rem;
@@ -445,20 +473,22 @@ class="logo">
 <!-- UPCOMING -->
 <div class="section">
 <h2>Upcoming Events</h2>
-<div class="grid">
-<div class="card">
+<div class="grid" id="upcomingGrid">
+
+<div class="card upcoming-card" data-event-date="2026-03-20">
 <div class="imgwrap">
 <img src="images/event1.jpeg" class="main" onclick="openLight(this.src)">
 <img src="images/event1.jpeg" class="overlay">
 </div>
 <div class="content">
-<h3>Farmers Training Workshop</h3>
+<h3 class="event-title">Farmers Training Workshop</h3>
 <p class="date">20 March 2026</p>
 <p>Modern farming skills training.</p>
-<div id="count">Loading...</div>
-<button onclick="openModal()">View Details</button>
+<div class="count">Loading...</div>
+<button class="details-btn" onclick="openModal()">View Details</button>
 </div>
 </div>
+
 </div>
 </div>
 
@@ -474,7 +504,7 @@ class="logo">
 <!-- PAST EVENTS -->
 <div class="section">
 <h2>Past Events</h2>
-<div class="grid">
+<div class="grid" id="pastGrid">
 <div class="card">
 <div class="imgwrap">
 <img src="images/past12.jpeg" class="main" onclick="openLight(this.src)">
@@ -508,7 +538,7 @@ class="logo">
 </div>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/256778928125" class="whatsapp">💬</a>
+<a href="https://wa.me/256788852311" class="whatsapp">💬</a>
 
 <footer>
 
@@ -535,21 +565,82 @@ Website developed by <strong>Ronald Alyao</strong>
 <script>
 /* SLIDER */
 let slides=document.querySelectorAll(".slide");
-let i=0;
+let si=0;
 setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
+slides[si].classList.remove("active");
+si=(si+1)%slides.length;
+slides[si].classList.add("active");
 },4000);
 
-/* COUNTDOWN */
-let date=new Date("March 20 2026");
-setInterval(()=>{
-let now=new Date();
-let diff=date-now;
-let days=Math.floor(diff/(1000*60*60*24));
-document.getElementById("count").innerHTML=days+" Days Remaining";
-},1000);
+/* COUNTDOWN - supports multiple upcoming cards */
+function updateCountdowns(){
+  document.querySelectorAll(".upcoming-card").forEach(card=>{
+    let countEl = card.querySelector(".count");
+    if(!countEl) return;
+    let eventDate = new Date(card.dataset.eventDate);
+    let now = new Date();
+    let diff = eventDate - now;
+    if(diff <= 0){
+      countEl.innerHTML = "Happening now / Today";
+    } else {
+      let days = Math.floor(diff/(1000*60*60*24));
+      countEl.innerHTML = days + " Days Remaining";
+    }
+  });
+}
+updateCountdowns();
+setInterval(updateCountdowns, 60000); // refresh every minute
+
+/* AUTO-MOVE EXPIRED EVENTS TO PAST EVENTS */
+function moveExpiredEvents(){
+  let upcomingGrid = document.getElementById("upcomingGrid");
+  let pastGrid = document.getElementById("pastGrid");
+  let today = new Date();
+  today.setHours(0,0,0,0); // compare by date only, event stays "upcoming" all day on its date
+
+  document.querySelectorAll(".upcoming-card").forEach(card=>{
+    let eventDate = new Date(card.dataset.eventDate);
+    eventDate.setHours(0,0,0,0);
+
+    if(eventDate < today){
+      // Strip the "upcoming" bits
+      card.classList.remove("upcoming-card");
+
+      let countEl = card.querySelector(".count");
+      if(countEl) countEl.remove();
+
+      let btn = card.querySelector(".details-btn");
+      if(btn){
+        btn.textContent = "View Photos";
+        btn.classList.remove("details-btn");
+      }
+
+      // Add a small "Past Event" badge above the title
+      let content = card.querySelector(".content");
+      if(content && !content.querySelector(".past-badge")){
+        let badge = document.createElement("span");
+        badge.className = "past-badge";
+        badge.textContent = "Past Event";
+        content.insertBefore(badge, content.firstChild);
+      }
+
+      // Move it to the top of the Past Events grid
+      pastGrid.insertBefore(card, pastGrid.firstChild);
+    }
+  });
+
+  // Show a friendly message if no upcoming events remain
+  if(upcomingGrid.querySelectorAll(".upcoming-card").length === 0){
+    if(!upcomingGrid.querySelector(".empty-msg")){
+      let msg = document.createElement("p");
+      msg.className = "empty-msg";
+      msg.textContent = "No upcoming events at the moment. Check back soon!";
+      upcomingGrid.appendChild(msg);
+    }
+  }
+}
+moveExpiredEvents();
+setInterval(moveExpiredEvents, 60 * 60 * 1000); // re-check every hour, in case the page stays open
 
 /* MODAL */
 let modal=document.getElementById("modal");
@@ -563,16 +654,16 @@ function openLight(src){ lightbox.style.display="block"; lightimg.src=src; }
 function closeLight(){ lightbox.style.display="none"; }
 
 /* SCROLL REVEAL */
-let cards=document.querySelectorAll(".card");
-window.addEventListener("scroll",()=>{
-cards.forEach(card=>{
-let top=card.getBoundingClientRect().top;
-if(top<window.innerHeight-80){
-card.classList.add("show");
+function revealCards(){
+  document.querySelectorAll(".card").forEach(card=>{
+    let top=card.getBoundingClientRect().top;
+    if(top<window.innerHeight-80){
+      card.classList.add("show");
+    }
+  });
 }
-});
-});
+window.addEventListener("scroll",revealCards);
+revealCards();
 </script>
 </body>
 </html>
-
