@@ -12,7 +12,7 @@
 #loading-screen {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg, #0b5d1e, #2e8b57, #dff3e3);
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,6 +54,7 @@
     visibility: hidden;
     pointer-events: none;
 }
+
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     line-height: 1.6;
