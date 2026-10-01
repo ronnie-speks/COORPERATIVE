@@ -10,20 +10,18 @@
 ================================ */
 
 #loading-screen {
+    #loading-screen {
     position: fixed;
     inset: 0;
-    background: #ffffff;
+    background: #0b5d1e;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 99999;
-
     opacity: 1;
     visibility: visible;
-
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
 }
 
 /* Logo container */
