@@ -10,6 +10,13 @@
 </head>
 <body>
 
+   <!-- Professional Loading Screen -->
+<div id="loading-screen">
+    <div class="loader-content">
+        <img src="images/logo.jpeg" alt="Website Logo">
+    </div>
+</div>
+
     <!-- ===== HEADER / NAVIGATION ===== -->
     <header>
         <div class="container">
@@ -39,7 +46,7 @@
                 better markets, and improved livelihoods.
             </p>
             <p>Registered under the Cooperative societies act.</p>
-            <p>Reg No:12303/RCS</p>
+            <p>Reg No: p.12303/RCS</p>
 
             <div class="hero-buttons">
                 <a href="membership.html" class="btn">Join the Cooperative</a>
@@ -154,6 +161,17 @@
         </div>
     </footer>
 
+    <script>
+    window.addEventListener("load", function () {
+
+        setTimeout(function () {
+            document.getElementById("loading-screen")
+                .classList.add("loaded");
+
+        }, 500);
+
+    });
+    </script>
+
 </body>
 </html>
-
