@@ -17,38 +17,52 @@
     justify-content: center;
     align-items: center;
     z-index: 99999;
+
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
 }
 
-#loading-screen img {
-    width: 180px;
-    animation: logoAnimation 1.8s ease-in-out;
+/* Logo container */
+.loader-content {
+    animation: logoEntrance 1.5s ease-in-out infinite;
 }
 
-@keyframes logoAnimation {
+/* Logo */
+.loader-content img {
+    width: 150px;
+    max-width: 40vw;
+    height: auto;
+    display: block;
+}
+
+/* Fade + zoom animation */
+@keyframes logoEntrance {
     0% {
         opacity: 0;
-        transform: scale(0.7);
+        transform: scale(0.85);
     }
 
-    40% {
+    30% {
         opacity: 1;
         transform: scale(1);
     }
 
     70% {
         opacity: 1;
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 
     100% {
         opacity: 0;
-        transform: scale(1.1);
+        transform: scale(1.08);
     }
 }
 
+/* When loading is finished */
 #loading-screen.loaded {
     opacity: 0;
     visibility: hidden;
